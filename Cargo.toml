@@ -1,0 +1,36 @@
+[package]
+name = "rayon-ca-byond"
+description = "Crate that integrates basics for interaction with rayon-ca for BYOND projects, and can serve as example implementation of RAYON-CA in BYOND project."
+version = "0.1.0"
+edition = "2021"
+keywords = [
+	"cellular-automata",
+	"rayon",
+	"simulation",
+	"byond",
+  "ffi"
+]
+categories = [
+	"games",
+	"game-development",
+	"simulation",
+	"concurrency",
+  "development-tools::ffi"
+]
+license-file = "LICENCE"
+repository = "https://github.com/AlexMorgan3817/Rayon-Ca.Byond"
+exclude = [
+	".cargo/",
+	".github/",
+	'.vscode/',
+  '.vim',
+  'RUN_THIS.sh'
+]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+byond_fn = "0.5.1"
+rayon-ca = "0.2.1"
+serde_json = { version = "1.0.149", features = ["preserve_order"] }

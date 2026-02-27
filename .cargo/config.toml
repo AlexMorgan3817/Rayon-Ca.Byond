@@ -1,0 +1,9 @@
+[alias]
+b = "build --target i686-unknown-linux-gnu"
+br = "build --release --target i686-unknown-linux-gnu"
+#deb = [
+#	"b",
+#	"cp ../target/i686-unknown-linux-gnu/debug/librayon_ca_byond.so lib.so"
+#]
+#rust-analyzer.cargo.target = "i686-unknown-linux-gnu"
+
