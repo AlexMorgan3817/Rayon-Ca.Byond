@@ -8,7 +8,7 @@ keywords = [
 	"rayon",
 	"simulation",
 	"byond",
-  "ffi"
+	"ffi"
 ]
 categories = [
 	"games",
@@ -23,8 +23,8 @@ exclude = [
 	".cargo/",
 	".github/",
 	'.vscode/',
-  '.vim',
-  'RUN_THIS.sh'
+	'.vim',
+	'RUN_THIS.sh',
 ]
 
 [lib]
@@ -33,4 +33,4 @@ crate-type = ["cdylib"]
 [dependencies]
 byond_fn = "0.5.1"
 rayon-ca = "0.2.1"
-serde_json = { version = "1.0.149", features = ["preserve_order"] }
+serde_json = { version = "1.0.0", features = ["preserve_order"] }
