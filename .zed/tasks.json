@@ -1,0 +1,12 @@
+[
+  {
+    "label": "Debug",
+    "command": "cmd /C debug.bat",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": "system",
+  },
+]
