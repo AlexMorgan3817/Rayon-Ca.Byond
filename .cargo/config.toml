@@ -1,8 +1,12 @@
 [alias]
 b = "build --target i686-unknown-linux-gnu"
-br = "build --release --target i686-unknown-linux-gnu"
 bw = "build --target i686-pc-windows-msvc"
+br = "build --release --target i686-unknown-linux-gnu"
 brw = "build --release --target i686-pc-windows-msvc"
+
+dbg = "run --bin debug --target i686-pc-windows-msvc"
+bld = "run --features byond_allow_other_arch --bin bld"
+# debug_l = "run --bin debug --target i686-unknown-linux-gnu"
 #deb = [
 #	"b",
 #	"cp ../target/i686-unknown-linux-gnu/debug/librayon_ca_byond.so lib.so"

@@ -55,7 +55,12 @@
 
 /world/New()
 	var/rca/rca = new/rca()
-	world.log << "Rayon-CA.BYOND version: " + call_ext(RAYON_CA, "get_version")()
+	try
+		world.log << "Rayon-CA.BYOND version: " + call_ext(RAYON_CA, "get_version")()
+	catch
+		world.log << "RAYON_CA not available: [RAYON_CA]"
+		return
+	world.log << "Rayon-CA.BYOND time 1: " + call_ext(RAYON_CA, "get_time")()
 	world.log << "\t # oneshot"
 	test_oneshot(rca)
 	world.log << "\t # manual"
@@ -64,3 +69,37 @@
 	test_two_strats(rca, "2strats")
 	//shutdown(src.address)
 	//Del()
+	world.log << "Rayon-CA.BYOND time 2: [call_ext(RAYON_CA, "get_time")()]"
+
+	world.log << "Measuring FFI speed directly..."
+	// var/last_time = text2num(call_ext(RAYON_CA, "get_time")())
+	// var/i = 0
+	// do
+	// 	var/ct = text2num(call_ext(RAYON_CA, "get_time")())
+	// 	world.log << "Rayon-CA.BYOND time delta [i]: [(ct - last_time)/10**6]s"
+	// 	last_time = ct
+	// 	i++
+	// while(i < 10)
+
+
+	world.log << "Collecting clean time results..."
+	var/start = world.timeofday
+	var/list/RESULTS = list()
+	for(var/_ in 1 to 500001)
+		RESULTS += call_ext(RAYON_CA, "get_time")()
+	var/end = world.timeofday
+	world.log << "Done"
+	world.log << "Calculating clean time results..."
+	var/sum = 0
+	world.log << "# Peaking into results"
+	for(var/idx in 2 to length(RESULTS))
+		 // Nano is too small, so we *10**3 it
+		var/diff = ((text2num(RESULTS[idx]) - text2num(RESULTS[idx-1])) / 10**6)
+		if(idx < 10)
+			world.log << "\t[idx-1]-[idx]: [diff]ms"
+		sum += diff
+	var/mean = sum / (length(RESULTS) - 1)
+	world.log << "Iterations: [length(RESULTS) - 1]"
+	world.log << "FFI mean latency: [mean]ms"
+	world.log << "FFI total latency: [sum]ms"
+	world.log << "Total time: [(end - start)/10]s"

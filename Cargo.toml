@@ -34,3 +34,6 @@ crate-type = ["cdylib"]
 byond_fn = "0.5.1"
 rayon-ca = "0.2.1"
 serde_json = { version = "1.0.0", features = ["preserve_order"] }
+
+[features]
+byond_allow_other_arch = ["byond_fn/allow_other_arch"]

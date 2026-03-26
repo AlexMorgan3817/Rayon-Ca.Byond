@@ -1,3 +1,4 @@
+use std::time::{SystemTime};
 use std::{collections::HashMap, sync::Mutex};
 use std::sync::{Arc, LazyLock};
 
@@ -8,6 +9,11 @@ use serde_json;
 
 pub static VERSION: &str = env!("CARGO_PKG_VERSION");
 #[byond_fn] pub fn get_version() -> String { VERSION.to_string() }
+
+pub static LAST_TIME: LazyLock<SystemTime> = LazyLock::new(|| SystemTime::now());
+#[byond_fn] pub fn get_time() -> String {
+	LAST_TIME.elapsed().unwrap().as_nanos().to_string()
+}
 
 pub static AUTOMATONS:LazyLock<Mutex<
 		HashMap<String, Arc<Mutex<CellularAutomaton>>>
